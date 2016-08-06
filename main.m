@@ -2,7 +2,7 @@ nMatrixIP = 4;
 nFibreIP = 3;
 nIP = nMatrixIP + nFibreIP;
 nArrays = 2;
-nAngles = 4;
+nAngles = 12;
 
 matrixDilCrit = 0.025;
 deltaT = 140;

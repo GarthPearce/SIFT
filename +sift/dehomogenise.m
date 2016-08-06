@@ -2,9 +2,12 @@ function result = dehomogenise(strain,deltaT,MME,nMatrixIP,nFibreIP,nArrays,nAng
 %SIFT_user(strain,deltaT,MME,nMatrixIP,nFibreIP,nArrays,nAngles,crit,results
 %dehomogenise Summary of this function goes here
 %   Detailed explanation goes here
-    load('rot_t.mat');
+    inputStrain = tensor(strain);
     for iAngle = 1:nAngles
-        rotStrain(:,iAngle) = rot_t(:,:,iAngle)*strain(:);
+        theta = (iAngle-1)/nAngles * 0.5*pi;
+        xAxis = [1.,0.,0.];
+        yAxis = [0.,cos(theta),sin(theta)];
+        rotStrain(:,iAngle) = inputStrain.strainTransform(xAxis,yAxis);
     end
     
     modStrain = zeros(6,max(nMatrixIP,nFibreIP),nArrays,nAngles);
